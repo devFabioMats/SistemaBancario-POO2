@@ -1,4 +1,4 @@
-# 1. Requisitos Funcionais
+# Requisitos Funcionais
 
 <p align="justify">A tabela a seguir foi criada com a técnica de <i><b>Brainstorm</b></i> em grupo.</p>
 
