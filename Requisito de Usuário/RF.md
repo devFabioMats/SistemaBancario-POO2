@@ -1,7 +1,5 @@
 # Requisitos Funcionais
 
-<p align="justify">A tabela a seguir foi criada com a técnica de <i><b>Brainstorm</b></i> em grupo.</p>
-
 | ID   |                                 Requisito                                 | Prioridade | 
 | :--: | :-----------------------------------------------------------------------: | :--------: | 
 | RF01 |O sistema deve oferecer a opção para realizar transferências por parte do cliente   |  Alta     | 
