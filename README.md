@@ -10,7 +10,7 @@ Curso de Engenharia de Computação/Software - UTFPR/Cornélio Procópio
 
 <br>
 
-📝 **Conteúdos: **  
+📝 **Conteúdos:**  
 - Requisitos Funcionais
 - Requisitos Não-Funcionais
 - Casos de Uso
