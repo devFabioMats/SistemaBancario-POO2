@@ -108,11 +108,10 @@
     <Component class="javax.swing.JComboBox" name="cbEmprestimo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
+          <StringArray count="3">
             <StringItem index="0" value="R$ 1.000,00"/>
             <StringItem index="1" value="R$ 2.500,00"/>
             <StringItem index="2" value="RS 3.000,00"/>
-            <StringItem index="3" value=" "/>
           </StringArray>
         </Property>
       </Properties>
@@ -130,6 +129,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Pegar Empr&#xe9;stimo"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btPegarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btVoltar">
       <Properties>
@@ -172,6 +174,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Pagar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btPagarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

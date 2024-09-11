@@ -1,11 +1,18 @@
 package view;
+import controller.ClienteControle;
 import model.Conta;
-import controller.ContaControle;
+import controller.TransferirControle;
 import javax.swing.JOptionPane;
 import static java.lang.Integer.*;
+import model.Usuario;
     
 public class ViewTransferir extends javax.swing.JFrame {
-
+    int login;
+    String senha;
+    public void pegarDados(int login, String senha){
+        this.login = login;
+        this.senha = senha;
+    }
     public ViewTransferir() {
         initComponents();
     }
@@ -97,13 +104,28 @@ public class ViewTransferir extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btTransfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTransfActionPerformed
-        ContaControle ctrl = new ContaControle();
-        ctrl.transferir(Integer.parseInt(jDest.getText()), Integer.parseInt(jQuantia.getText()));
-        JOptionPane.showMessageDialog(null, "Transferencia realizada com sucesso", "Transferencia realizada", 1);
+        try{
+            TransferirControle transferir = new TransferirControle();
+            Conta conta = new Conta();
+            Usuario usuario = new Usuario();
+            ClienteControle pegar = new ClienteControle();
+            conta = pegar.consultar3(login, senha);
+            float valor = Float.valueOf(jQuantia.getText());
+            if(conta.getSaldo() >= valor){
+                transferir.transferir(login, senha, Integer.parseInt(jDest.getText()),valor, conta);
+                transferir.atualziar(Integer.parseInt(jDest.getText()) , valor);
+                JOptionPane.showMessageDialog(null, "Transferencia realizada com sucesso", "Transferencia realizada", 1);
+            }else{
+                JOptionPane.showMessageDialog(null, "Saldo insuficiente", "Transferencia Fracassada", 1);
+            }
+        }catch(Exception ex){
+         JOptionPane.showMessageDialog(null, "Insira Dados Validos", "Falha no Login", 2);   
+        }
     }//GEN-LAST:event_btTransfActionPerformed
 
     private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
         ViewUsuario tela = new ViewUsuario();
+        tela.receberDados(login, senha);
         tela.setVisible(true);
         dispose();
     }//GEN-LAST:event_btVoltarActionPerformed

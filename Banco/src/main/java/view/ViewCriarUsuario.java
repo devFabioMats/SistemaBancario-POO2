@@ -2,13 +2,13 @@ package view;
 import javax.swing.JOptionPane;
 import model.Usuario;
 import model.Endereco;
-import controller.UsuarioControle;
+import controller.ClienteControle;
 import javax.swing.JOptionPane;
-import static java.lang.Integer.*;
 
 public class ViewCriarUsuario extends javax.swing.JFrame {
     public ViewCriarUsuario() {
         initComponents();
+        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -120,18 +120,24 @@ public class ViewCriarUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCriarActionPerformed
-        Usuario usuario = new Usuario();
-        usuario.setNome(jNome.getText());
-        usuario.setCpf(Integer.parseInt(jCPF.getText()));
-        usuario.setSenha(jSenha.getText());
-        usuario.getEnder().setCidade(jCidade.getText());
-        usuario.getEnder().setNum(Integer.parseInt(jNumero.getText()));
-        usuario.getEnder().setRua(jRua.getText());
-        JOptionPane.showMessageDialog(null, "Conta criada com sucesso", "Conta criada", 1);
-        UsuarioControle usuarioCrtl = new UsuarioControle();
-        usuarioCrtl.criarConta(usuario);
-        Principal tela = new Principal();
-        dispose();   
+        try{
+            Usuario usuario = new Usuario();
+            usuario.setNome(jNome.getText());
+            usuario.setSenha(jSenha.getText());
+            usuario.setCpf(Integer.parseInt(jCPF.getText()));
+            Endereco ender = new Endereco();
+            ender.setCidade(jCidade.getText());
+            ender.setRua(jRua.getText());
+            ender.setNum(Integer.parseInt(jNumero.getText()));
+            ClienteControle controle = new ClienteControle();
+            controle.criarConta(usuario, ender);
+            JOptionPane.showMessageDialog(null, "Conta criada com sucesso", "Conta criada", 1);
+            Principal tela = new Principal();
+            tela.setVisible(true);
+            dispose(); 
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Insira Dados Validos", "Falha no Login", 2);
+        }
     }//GEN-LAST:event_btCriarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,18 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view;
 
-/**
- *
- * @author leoch
- */
-public class ViewEmprestimo extends javax.swing.JFrame {
+import controller.ClienteControle;
+import controller.EmprestimoControle;
+import javax.swing.JOptionPane;
+import model.Conta;
 
-    /**
-     * Creates new form ViewEmpréstimo
-     */
+
+public class ViewEmprestimo extends javax.swing.JFrame {
+    int login;
+    String senha;
+    public void pegarDados(int login, String senha){
+        this.login = login;
+        this.senha = senha;
+    }
     public ViewEmprestimo() {
         initComponents();
     }
@@ -45,7 +45,7 @@ public class ViewEmprestimo extends javax.swing.JFrame {
         lQuantia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lQuantia.setText("Selecione a quantia que deseja");
 
-        cbEmprestimo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "R$ 1.000,00", "R$ 2.500,00", "RS 3.000,00", " " }));
+        cbEmprestimo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "R$ 1.000,00", "R$ 2.500,00", "RS 3.000,00" }));
         cbEmprestimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbEmprestimoActionPerformed(evt);
@@ -54,6 +54,11 @@ public class ViewEmprestimo extends javax.swing.JFrame {
 
         btPegar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btPegar.setText("Pegar Empréstimo");
+        btPegar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPegarActionPerformed(evt);
+            }
+        });
 
         btVoltar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btVoltar.setText("Voltar");
@@ -73,6 +78,11 @@ public class ViewEmprestimo extends javax.swing.JFrame {
 
         btPagar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btPagar.setText("Pagar");
+        btPagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPagarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,14 +142,57 @@ public class ViewEmprestimo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEmprestimoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_cbEmprestimoActionPerformed
 
     private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
         ViewUsuario tela = new ViewUsuario();
+        tela.receberDados(login, senha);
         tela.setVisible(true);
         dispose();
     }//GEN-LAST:event_btVoltarActionPerformed
+
+    private void btPegarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPegarActionPerformed
+        try{
+            EmprestimoControle pegar = new EmprestimoControle();
+            Conta conta = new Conta();
+            ClienteControle receber = new ClienteControle();
+            conta = receber.consultar3(login, senha);
+            if(cbEmprestimo.getSelectedIndex() == 0){
+                pegar.pegarEmprestimo(login, senha, 1000, conta);
+                JOptionPane.showMessageDialog(null, "Emprestimo realizado", "Emprestimo", 2);
+            }else if(cbEmprestimo.getSelectedIndex()==1){
+                pegar.pegarEmprestimo(login, senha, 2500, conta);
+                JOptionPane.showMessageDialog(null, "Emprestimo realizado", "Emprestimo", 2);
+            }else if(cbEmprestimo.getSelectedIndex()==2){
+                pegar.pegarEmprestimo(login, senha, 3000, conta);
+                JOptionPane.showMessageDialog(null, "Emprestimo realizado", "Emprestimo", 2);
+            }
+            jPago.setText("0");
+            btPegar.setEnabled(false);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Insira Dados Validos", "Falha no Login", 2);
+        }
+    }//GEN-LAST:event_btPegarActionPerformed
+
+    private void btPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPagarActionPerformed
+        try{
+            EmprestimoControle pagar = new EmprestimoControle();
+            Conta conta = new Conta();
+            ClienteControle pegar = new ClienteControle();
+            conta = pegar.consultar3(login, senha);
+            if(conta.getSaldo() >= Float.valueOf(jPagar.getText())){
+                pagar.pagarEmprestimo(login, senha, Float.valueOf(jPagar.getText()), conta);
+                jPago.setText("R$" + Float.valueOf(jPagar.getText()));
+                jPagar.setText("");
+                JOptionPane.showMessageDialog(null, "Emprestimo Pago com sucesso", "Emprestimo", 2);
+            }else {
+                JOptionPane.showMessageDialog(null, "Saldo insuficiente", "Transferencia Fracassada", 1);
+            }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Insira Dados Validos", "ERRO", 2);
+        }
+    }//GEN-LAST:event_btPagarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btPagar;

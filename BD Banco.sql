@@ -25,32 +25,32 @@ CREATE TABLE Cartao(
     cvv int,
     limite int,
     numConta int,
-    PRIMARY KEY(numConta),
-    FOREIGN KEY(numConta) REFERENCES Conta(numConta)
+    cpfUsuario int,
+	FOREIGN KEY(cpfUsuario, numConta) REFERENCES Conta(cpfUsuario, numConta),
+    PRIMARY KEY(numCartao)
 );
 Create TABLE Investimento(
 	quantia float,
-    opcao char,
-    rendimento int,
+    opcao varchar(25),
+    rendimento float,
     numConta int,
-    PRIMARY KEY(numConta),
-    FOREIGN KEY(numConta) REFERENCES Conta(numConta)
+    cpfUsuario int,
+    FOREIGN KEY(cpfUsuario, numConta) REFERENCES Conta(cpfUsuario, numConta)
 );
 CREATE TABLE Emprestimo(
 	quantia float,
     juros int,
     quantiaPaga int,
     numConta int,
-    PRIMARY KEY(numConta),
-    FOREIGN KEY(numConta) REFERENCES Conta(numConta)
+    cpfUsuario int,
+    FOREIGN KEY(cpfUsuario, numConta) REFERENCES Conta(cpfUsuario, numConta)
 );
 CREATE TABLE Extrato(
 	valor float,
     tipo varchar(50),
-    usuario varchar(50),
     numConta int,
-    PRIMARY KEY(numConta),
-    FOREIGN KEY(usuario) REFERENCES Usuario(nome),
-    FOREIGN KEY(numConta) REFERENCES Conta(numConta)
+    cpfUsuario int,
+    FOREIGN KEY(cpfUsuario, numConta) REFERENCES Conta(cpfUsuario, numConta)
 );
+
 

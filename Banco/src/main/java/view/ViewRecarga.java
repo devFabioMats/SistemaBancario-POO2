@@ -1,18 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view;
 
-/**
- *
- * @author leoch
- */
-public class ViewRecarga extends javax.swing.JFrame {
+import controller.ClienteControle;
+import controller.RecargaControle;
+import javax.swing.JOptionPane;
+import model.Conta;
 
-    /**
-     * Creates new form ViewRecarga
-     */
+public class ViewRecarga extends javax.swing.JFrame {
+    int login;
+    String senha;
+    public void pegarDados(int login, String senha){
+        this.login = login;
+        this.senha = senha;
+    }
     public ViewRecarga() {
         initComponents();
     }
@@ -26,42 +25,52 @@ public class ViewRecarga extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        lTitulo = new javax.swing.JLabel();
+        lOpcao = new javax.swing.JLabel();
+        jcOpcao = new javax.swing.JComboBox<>();
+        lValor = new javax.swing.JLabel();
+        jcValor = new javax.swing.JComboBox<>();
+        lTelefone = new javax.swing.JLabel();
+        jTelefone = new javax.swing.JTextField();
+        btRecarga = new javax.swing.JButton();
+        btVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Recarga de Créditos");
+        lTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lTitulo.setText("Recarga de Créditos");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Escolha uma opção");
+        lOpcao.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lOpcao.setText("Escolha uma opção");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "iFood", "Celular", "Uber" }));
+        jcOpcao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "iFood", "Celular", "Uber" }));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("Escolha um valor");
+        lValor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lValor.setText("Escolha um valor");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "R$ 5,00", "R$ 25,00", "R$ 50,00" }));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Insira seu celular");
-
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("Recarregar");
-
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton2.setText("Voltar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jcValor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "R$ 5,00", "R$ 25,00", "R$ 50,00" }));
+        jcValor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jcValorActionPerformed(evt);
+            }
+        });
+
+        lTelefone.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lTelefone.setText("Insira seu celular");
+
+        btRecarga.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btRecarga.setText("Recarregar");
+        btRecarga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRecargaActionPerformed(evt);
+            }
+        });
+
+        btVoltar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btVoltar.setText("Voltar");
+        btVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVoltarActionPerformed(evt);
             }
         });
 
@@ -72,60 +81,98 @@ public class ViewRecarga extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel1)
+                    .addComponent(btVoltar)
+                    .addComponent(btRecarga)
+                    .addComponent(lTitulo)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jTelefone, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lTelefone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lValor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jcValor, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lOpcao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                        .addComponent(jcOpcao, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(381, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel1)
+                .addComponent(lTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addComponent(lOpcao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jcOpcao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(lValor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jcValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addComponent(lTelefone)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btRecarga)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(btVoltar)
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
         ViewUsuario tela = new ViewUsuario();
+        tela.receberDados(login, senha);
         tela.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btVoltarActionPerformed
+
+    private void jcValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcValorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcValorActionPerformed
+
+    private void btRecargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRecargaActionPerformed
+        try{
+            Conta conta = new Conta();
+            ClienteControle pegar = new ClienteControle();
+            conta = pegar.consultar3(login, senha);
+            RecargaControle recarregar = new RecargaControle();
+            if(jcValor.getSelectedIndex() == 0){
+                if(conta.getSaldo() >= 5){
+                    recarregar.recarregar(login, senha, 5, conta);
+                    JOptionPane.showMessageDialog(null, "Recarga realizada com sucesso", "Recarga realizada", 1);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Saldo Insuficiente", "Recarga fracassada", 1);
+                }
+            }else if(jcValor.getSelectedIndex() == 1){
+                if(conta.getSaldo() >= 25){
+                    recarregar.recarregar(login, senha, 25, conta);
+                    JOptionPane.showMessageDialog(null, "Recarga realizada com sucesso", "Recarga realizada", 1);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Saldo Insuficiente", "Recarga fracassada", 1);
+                }
+            }else if(jcValor.getSelectedIndex() == 2){
+                if(conta.getSaldo() >= 50){
+                    recarregar.recarregar(login, senha, 50, conta);
+                    JOptionPane.showMessageDialog(null, "Recarga realizada com sucesso", "Recarga realizada", 1);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Saldo Insuficiente", "Recarga fracassada", 1);
+                }
+            }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Insira Dados Validos", "Falha no Login", 2);
+        }
+    }//GEN-LAST:event_btRecargaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton btRecarga;
+    private javax.swing.JButton btVoltar;
+    private javax.swing.JTextField jTelefone;
+    private javax.swing.JComboBox<String> jcOpcao;
+    private javax.swing.JComboBox<String> jcValor;
+    private javax.swing.JLabel lOpcao;
+    private javax.swing.JLabel lTelefone;
+    private javax.swing.JLabel lTitulo;
+    private javax.swing.JLabel lValor;
     // End of variables declaration//GEN-END:variables
 }

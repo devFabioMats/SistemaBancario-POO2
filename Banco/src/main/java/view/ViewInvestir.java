@@ -1,20 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view;
-
-/**
- *
- * @author leoch
- */
+import controller.ClienteControle;
+import java.util.Random;
+import model.Conta;
+import controller.InvestimentoControle;
+import javax.swing.JOptionPane;
 public class ViewInvestir extends javax.swing.JFrame {
-
-    /**
-     * Creates new form ViewInvestir
-     */
+    int login;
+    String senha;
+    public void pegarDados(int login, String senha){
+        this.login = login;
+        this.senha = senha;
+    }
     public ViewInvestir() {
         initComponents();
+        Random gerador = new Random(2);
+        jEspecial.setText(Float.toString((float) (gerador.nextFloat(3)+ 0.5)));
+        jPoupanca.setText(Float.toString(gerador.nextFloat((float) 1.5)));
     }
 
     /**
@@ -28,7 +29,7 @@ public class ViewInvestir extends javax.swing.JFrame {
 
         lTitulo = new javax.swing.JLabel();
         lQuantia = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jValor = new javax.swing.JTextField();
         btPoupanca = new javax.swing.JButton();
         btEspecial = new javax.swing.JButton();
         lPoupanca = new javax.swing.JLabel();
@@ -45,11 +46,27 @@ public class ViewInvestir extends javax.swing.JFrame {
         lQuantia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lQuantia.setText("Quantia que deseja investir");
 
+        jValor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jValorActionPerformed(evt);
+            }
+        });
+
         btPoupanca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btPoupanca.setText("Poupança");
+        btPoupanca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPoupancaActionPerformed(evt);
+            }
+        });
 
         btEspecial.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btEspecial.setText("Especial");
+        btEspecial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEspecialActionPerformed(evt);
+            }
+        });
 
         lPoupanca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lPoupanca.setText("Rendimento Poupança / mes");
@@ -84,7 +101,7 @@ public class ViewInvestir extends javax.swing.JFrame {
                                 .addComponent(btPoupanca)
                                 .addGap(18, 18, 18)
                                 .addComponent(btEspecial))
-                            .addComponent(jTextField1)
+                            .addComponent(jValor)
                             .addComponent(lQuantia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(98, 98, 98)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -105,7 +122,7 @@ public class ViewInvestir extends javax.swing.JFrame {
                     .addComponent(lPoupanca))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPoupanca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(lEspecial)
@@ -124,9 +141,43 @@ public class ViewInvestir extends javax.swing.JFrame {
 
     private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
         ViewUsuario tela = new ViewUsuario();
+        tela.receberDados(login, senha);
         tela.setVisible(true);
         dispose();
     }//GEN-LAST:event_btVoltarActionPerformed
+
+    private void btPoupancaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPoupancaActionPerformed
+        try{
+            int opcao = 1;
+            InvestimentoControle investir = new InvestimentoControle();
+            Conta conta = new Conta();
+            ClienteControle pegar = new ClienteControle();
+            conta = pegar.consultar3(login, senha);
+            float valor = Float.valueOf(jValor.getText());
+            if(conta.getSaldo() >= valor){
+                investir.investir(login, senha, opcao, Float.valueOf(jValor.getText()), conta, Float.valueOf(jPoupanca.getText()));
+                JOptionPane.showMessageDialog(null, "Investimento Realizado com sucesso", "Investimento feito", 1);
+            }else {
+                JOptionPane.showMessageDialog(null, "Saldo insuficiente", "Transferencia Fracassada", 1);
+            }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Insira Dados Validos", "Falha no Login", 2);
+        }
+    }//GEN-LAST:event_btPoupancaActionPerformed
+
+    private void btEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEspecialActionPerformed
+        int opcao = 2;
+        InvestimentoControle investir = new InvestimentoControle();
+        Conta conta = new Conta();
+        ClienteControle pegar = new ClienteControle();
+        conta = pegar.consultar3(login, senha);
+        investir.investir(login, senha, opcao, Float.valueOf(jValor.getText()), conta, Float.valueOf(jEspecial.getText()));
+        JOptionPane.showMessageDialog(null, "Investimento Realizado com sucesso", "Investimento feito", 1);
+    }//GEN-LAST:event_btEspecialActionPerformed
+
+    private void jValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jValorActionPerformed
+
+    }//GEN-LAST:event_jValorActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btEspecial;
@@ -134,7 +185,7 @@ public class ViewInvestir extends javax.swing.JFrame {
     private javax.swing.JButton btVoltar;
     private javax.swing.JTextField jEspecial;
     private javax.swing.JTextField jPoupanca;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jValor;
     private javax.swing.JLabel lEspecial;
     private javax.swing.JLabel lPoupanca;
     private javax.swing.JLabel lQuantia;
