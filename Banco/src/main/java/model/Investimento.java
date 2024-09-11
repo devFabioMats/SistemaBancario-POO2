@@ -1,9 +1,9 @@
 package model;
 
 public class Investimento {
-    float quantia;
-    char opcao;
-    float rendimento;
+    private float quantia;
+    private char opcao;
+    private int rendimento;
     
     public float getQuantia(){
         return quantia;
@@ -17,10 +17,10 @@ public class Investimento {
     public void setOpcao(char opcao){
         this.opcao=opcao;
     }
-    public float getRendimento(){
+    public int getRendimento(){
         return rendimento;
     }
-    public void setRendimento(float rendimento){
+    public void setRendimento(int rendimento){
         this.rendimento=rendimento;
     }
 }

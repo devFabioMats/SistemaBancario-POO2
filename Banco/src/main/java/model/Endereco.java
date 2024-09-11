@@ -1,9 +1,9 @@
 package model;
 
 public class Endereco {
-    String cidade;
-    String rua;
-    int numero;
+    private String cidade;
+    private String rua;
+    private int numero;
     
     public String getCidade(){
         return cidade;

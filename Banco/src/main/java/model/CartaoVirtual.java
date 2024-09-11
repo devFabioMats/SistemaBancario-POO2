@@ -1,16 +1,14 @@
 package model;
-import java.util.Date;
 
 public class CartaoVirtual {
-    int numeroCartao;
-    int cvv;
-    Date expiracao;
-    int limite;
+    private long numeroCartao;
+    private int cvv;
+    private int limite;
     
-    public int getCartao(){
+    public long getCartao(){
         return numeroCartao;
     }
-    public void setCartao(int numeroCartao){
+    public void setCartao(long numeroCartao){
         this.numeroCartao=numeroCartao;
     }
     public int getCvv(){
@@ -18,12 +16,6 @@ public class CartaoVirtual {
     }
     public void setCvv(int cvv){
         this.cvv=cvv;
-    }
-    public Date getExp(){
-        return expiracao;
-    }
-    public void setExp(Date expiracao){
-        this.expiracao=expiracao;
     }
     public int getLimite(){
         return limite;

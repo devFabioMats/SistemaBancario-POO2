@@ -1,9 +1,9 @@
 package model;
 
 public class Conta {
-    int numeroConta;
-    float saldo;
-    int agencia;
+    private int numeroConta;
+    private float saldo;
+    private int agencia;
     
     public int getNumero(){
         return numeroConta;

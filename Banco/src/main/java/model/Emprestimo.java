@@ -1,9 +1,9 @@
 package model;
 
 public class Emprestimo {
-    float quantia;
-    int juros;
-    float pago;
+    private float quantia;
+    private int juros;
+    private float quantiaPaga;
     
     public float getQuantia(){
         return quantia;
@@ -18,9 +18,9 @@ public class Emprestimo {
         this.juros=juros;
     }
     public float getPago(){
-        return pago;
+        return quantiaPaga;
     }
-    public void setPago(float pago){
-        this.pago=pago;
+    public void setPago(float quantiaPaga){
+        this.quantiaPaga=quantiaPaga;
     }
 }

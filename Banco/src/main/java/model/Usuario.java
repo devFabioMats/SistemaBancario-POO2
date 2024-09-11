@@ -1,10 +1,10 @@
 package model;
 
 public class Usuario {
-    String nome;
-    int cpf;
-    String senha;
-    Endereco ender = new Endereco();
+    private String nome;
+    private long cpf;
+    private String senha;
+    private Endereco ender = new Endereco();
     
     public String getNome(){
         return nome;
@@ -12,10 +12,10 @@ public class Usuario {
     public void setNome(String nome){
         this.nome=nome;
     }
-    public int getCpf(){
+    public long getCpf(){
         return cpf;
     }
-    public void setCpf(int cpf){
+    public void setCpf(long cpf){
         this.cpf=cpf;
     }
     public String getSenha(){
