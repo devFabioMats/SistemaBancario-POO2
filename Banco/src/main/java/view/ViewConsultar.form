@@ -27,41 +27,49 @@
               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="lCidade" min="-2" max="-2" attributes="0"/>
+                      <Component id="btVer" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="lAgencia" min="-2" pref="270" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="lTitulo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jRua" alignment="0" pref="270" max="32767" attributes="0"/>
-                          <Component id="lRua" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jCidade" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jCpf" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lNome" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jNome" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lCpf" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jNumero" max="32767" attributes="0"/>
-                          <Component id="jNumeroConta" max="32767" attributes="0"/>
-                          <Component id="jAgencia" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lNumeroConta" min="-2" pref="270" max="-2" attributes="0"/>
-                                  <Component id="btVoltar" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <Component id="lNumero" min="-2" pref="270" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="lCidade" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="lAgencia" min="-2" pref="270" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="lTitulo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jRua" alignment="0" pref="270" max="32767" attributes="0"/>
+                                  <Component id="lRua" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jCidade" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jCpf" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="lNome" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jNome" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="lCpf" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jNumero" max="32767" attributes="0"/>
+                                  <Component id="jNumeroConta" max="32767" attributes="0"/>
+                                  <Component id="jAgencia" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lNumeroConta" min="-2" pref="270" max="-2" attributes="0"/>
+                                          <Component id="btVoltar" min="-2" pref="80" max="-2" attributes="0"/>
+                                          <Component id="lNumero" min="-2" pref="270" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
                       </Group>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -107,7 +115,9 @@
                   <Component id="jRua" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btVoltar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="63" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btVer" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="30" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -133,6 +143,9 @@
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jNomeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lCpf">
       <Properties>
@@ -224,6 +237,17 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btVoltarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btVer">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Visualizar Dados"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btVerActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

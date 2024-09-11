@@ -4,6 +4,7 @@ public class Conta {
     private int numeroConta;
     private float saldo;
     private int agencia;
+    private int cpfUsuario;
     
     public int getNumero(){
         return numeroConta;
@@ -23,4 +24,10 @@ public class Conta {
     public void setAgencia(int agencia){
         this.agencia=agencia;
     }
+    public int getCpfUsuario(){
+        return cpfUsuario;
+    };
+    public void setCpfUsuario(int cpfUsuario){
+        this.cpfUsuario = cpfUsuario;
+    };
 }
