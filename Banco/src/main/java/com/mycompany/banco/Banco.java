@@ -1,13 +1,19 @@
 package com.mycompany.banco;
-import model.Usuario;
-import model.Endereco;
-import controller.UsuarioControle;
+
 import view.ViewUsuario;
+import view.ViewDeposito;
+import view.ViewSaque;
 
 public class Banco {
 
     public static void main(String[] args) {
-        ViewUsuario tela = new ViewUsuario();
-        tela.setVisible(true);
+        ViewUsuario telaUsuario = new ViewUsuario();
+        telaUsuario.setVisible(true);
+
+        ViewDeposito telaDeposito = new ViewDeposito();
+        telaDeposito.setVisible(true);
+
+        ViewSaque telaSaque = new ViewSaque();
+        telaSaque.setVisible(true);
     }
 }
